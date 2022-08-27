@@ -31,7 +31,12 @@ const userReducer = (state, action) => {
 
 export const UserContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
-	console.log('state', state);
+
+	useEffect(() => {
+		if (state.id) {
+			const resp = await axios.get(`${API_URI}/api/auth/verifyId?idUser=${state.id}`);
+		}
+	}, []);
 	
 	return (
 		<userContext.Provider value={{ username: state.username, id: state.id, contacts: state.contacts, dispatch}}>

@@ -59,9 +59,9 @@ router.post("/login", async (req, res) => {
     }
 });
 
-router.post("/verifyId", async (req, res) => {
+router.get("/verifyId", async (req, res) => {
     try {
-        const { idUser } = req.body;
+        const { idUser } = req.query;
         const userExist = await userSchema.exists({ _id: idUser });
         if (userExist) {
             const dbUser = await userSchema.findById(idUser);
