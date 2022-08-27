@@ -1,8 +1,8 @@
 import { useState, useReducer, createContext } from 'react';
 
 const INITIAL_STATE = {
-	username: "teste",
-	id: "",
+	username: "",
+	id: localStorage.getItem("token") || "",
 	contacts: null
 }
 
@@ -11,6 +11,8 @@ export const userContext = createContext(INITIAL_STATE);
 const userReducer = (state, action) => {
 	switch (action.type) {
 		case "LOGIN_SUCCESS":
+			localStorage.setItem("token", action.payload.id);
+			console.log(action);
 			return {
 				username: action.payload.username,
 				id: action.payload.id,

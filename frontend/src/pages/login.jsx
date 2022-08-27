@@ -11,12 +11,17 @@ export function Login() {
 	const navigate = useNavigate();
 
 	const onSubmit = async (data) => {
-		const resp = await axios.post(`${API_URI}/api/auth/login`, data);
-		const respData = resp.data;
-		const respType = respData.type;
+		const respUser = await axios.post(`${API_URI}/api/auth/login`, data);
+		const respUserData = respUser.data;
+		const userData = respUserData.data;
+		const respType = respUserData.type;
+		const respContacts = await axios.get(`${API_URI}/api/contact/readContact?idUser=${userData._id}`);
+		const respContactsData = respContacts.data;
+		const respContactsType = respContactsData.type;
+		const contacts = respContactsData.data;
 		if (respType === "success") {
 			navigate('/dashboard');
-			dispatch("LOGIN_SUCCESS");
+			dispatch({type: "LOGIN_SUCCESS", payload: { id: userData._id, username: userData.username, contacts }});
 		}
 		else if (respType === "error") dispatch("LOGIN_FAILURE");
 	}

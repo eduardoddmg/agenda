@@ -59,4 +59,19 @@ router.post("/login", async (req, res) => {
     }
 });
 
+router.post("/verifyId", async (req, res) => {
+    try {
+        const { idUser } = req.body;
+        const userExist = await userSchema.exists({ _id: idUser });
+        if (userExist) {
+            const dbUser = await userSchema.findById(idUser);
+            res.status(200).send({ type: "success", message: "usuario existe", data: dbUser });
+        } else {
+            res.status(200).send({ type: "error", message: "usuario nao existe" });
+        }
+    } catch (error) {
+        res.status(500).send({ type: "error", message: error })
+    }
+})
+
 module.exports = router;
