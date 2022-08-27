@@ -53,7 +53,7 @@ router.post("/login", async (req, res) => {
         if (!bdUser) res.status(200).send({ type: "error", message: "dados inválidos" });
         const check = await bcrypt.compare(password, bdUser.password);
         if (!check) res.status(200).send({ type: "error", message: "senha inválida" });
-        else res.status (200).send({ type: "success", message: "usuario logado com sucesso "});
+        else res.status (200).send({ type: "success", message: "usuario logado com sucesso", data: bdUser });
     } catch (error) {
         res.status(500).send({ type: "error", message: error });
     }

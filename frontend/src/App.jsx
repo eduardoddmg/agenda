@@ -1,6 +1,10 @@
+import Router from './Router';
+
 function App() {
   return (
-    <>Teste</>
+    <>
+      <Router />
+    </>
   )
 }
 
