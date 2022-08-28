@@ -29,7 +29,7 @@ router.put("/updateContact", async (req, res) => {
     try {
         const contactBody = req.body;
         const contact = await contactSchema.findByIdAndUpdate(contactBody._id, contactBody);
-        res.status(200).send({ type: "success", message: "contato atualizado com sucesso" });
+        res.status(200).send({ type: "success", message: "contato atualizado com sucesso", data: contact });
     } catch (error) {
         res.status(500).send({ type: "error", message: error })
     }
