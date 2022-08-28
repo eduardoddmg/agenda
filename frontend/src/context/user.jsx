@@ -31,7 +31,15 @@ const userReducer = (state, action) => {
 				contacts: '',
 				loading: false
 			}
-		case "ADD_CONTACT":
+		case "LOGOUT":
+			localStorage.setItem("token", "");
+			return {
+				username: '',
+				token: "",
+				contacts: '',
+				loading: false
+			}
+		case "GET_CONTACT":
 			return {
 				contacts: action.payload.contacts,
 				token: action.payload.token
@@ -44,7 +52,7 @@ const userReducer = (state, action) => {
 export const UserContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
 
-	const getData = async () => {
+	const firstLogin = async () => {
 		if (state.token) {
 			const resp = await axios.get(`${API_URI}/api/auth/verifyId?idUser=${state.token}`);
 			const respData = resp.data;
@@ -63,12 +71,19 @@ export const UserContextProvider = ({ children }) => {
 		}
 	}
 
+	const getContact = async(token, dispatch) => {
+		const resp = await axios.get(`${API_URI}/api/contact/readContact?idUser=${token}`);
+		const contacts = resp.data.data;
+		dispatch({ type: "GET_CONTACT", payload: { contacts, token }});
+	}
+
 	useEffect(() => {
-		getData();
+		console.log("first render");
+		firstLogin();
 	}, []);
 	
 	return (
-		<userContext.Provider value={{ username: state.username, token: state.token, contacts: state.contacts, loading: state.loading, dispatch}}>
+		<userContext.Provider value={{ username: state.username, token: state.token, contacts: state.contacts, loading: state.loading, dispatch, firstLogin, getContact }}>
 			{children}
 		</userContext.Provider>
 	)
