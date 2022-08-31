@@ -1,5 +1,5 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
-import { useEffect } from "react";
 import { API_URI } from "../../util";
 import { useForm } from "react-hook-form";
 
@@ -10,11 +10,14 @@ import * as S from "../../styles/geral.js";
 import { Input, Button } from "@chakra-ui/react";
 
 export function Register() {
+  const [isLoading, setIsLoading] = useState(false);
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
+    setIsLoading(true);
     const resp = await axios.post(`${API_URI}/api/auth/register`, data);
-    console.log(resp);
+    console.log(resp.data);
+    setIsLoading(false);
   };
 
   return (
@@ -28,7 +31,7 @@ export function Register() {
           {...register("password")}
         />
         <Input type="email" placeholder="email" {...register("email")} />
-        <Button colorScheme="blue" type="submit">
+        <Button isLoading={isLoading} colorScheme="blue" type="submit">
           submit
         </Button>
       </S.Form>

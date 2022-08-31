@@ -6,9 +6,11 @@ export const Form = styled.form`
 	margin: 5vh auto;
 
 	border: ${props => props.noBorder ? "none" : "1px solid black"};
+	borderRadius: 8px;
 	width: ${props => props.w || "40%"};
 
 	padding: 2em 4em;
+
 
 	button {
 		margin-top: 2em;

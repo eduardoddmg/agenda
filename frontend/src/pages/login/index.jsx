@@ -50,7 +50,7 @@ export function Login() {
           placeholder="password"
           {...register("password")}
         />
-        <Button colorScheme="blue" type="submit">
+        <Button isLoading={isLoading} colorScheme="blue" type="submit">
           submit
         </Button>
       </S.Form>
