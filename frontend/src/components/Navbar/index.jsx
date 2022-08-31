@@ -17,15 +17,17 @@ export default function Navbar() {
 
   return (
     <S.Navbar>
-      <Link to="/">Home</Link>
-      <Link to="/login">Login</Link>
-      <Link to="/register">Register</Link>
-      <Link to="/dashboard">Dashboard</Link>
-      {token && (
-        <Button colorScheme="blue" onClick={logout}>
-          logout
-        </Button>
-      )}
+      <section>
+        <Link to="/">Home</Link>
+        {token && <Link to="/dashboard">Dashboard</Link>}
+      </section>
+      <section>
+        {token ? 
+          <Button colorScheme="whiteAlpha" onClick={logout}>
+            logout
+          </Button> : <Button as={Link} colorScheme="blue" to="/login">Entrar</Button>
+        }
+      </section>
     </S.Navbar>
   );
 }

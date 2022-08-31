@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URI } from "../../util";
 import { useForm } from "react-hook-form";
+import { Link } from 'react-router-dom';
 
 import { Layout } from "../../components";
 
@@ -34,6 +35,7 @@ export function Register() {
         <Button isLoading={isLoading} colorScheme="blue" type="submit">
           submit
         </Button>
+        <p>Já tem uma conta? <Link to="/login"><b>Faça o login</b></Link></p>
       </S.Form>
     </Layout>
   );

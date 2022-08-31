@@ -14,7 +14,7 @@ export const Table = ({ header, children }) => {
         <Thead>
           <Tr>
             {header.map((item, index) => (
-              <Th>{item}</Th>
+              <Th key={index}>{item}</Th>
             ))}
           </Tr>
         </Thead>

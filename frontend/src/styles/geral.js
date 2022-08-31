@@ -13,7 +13,7 @@ export const Form = styled.form`
 
 
 	button {
-		margin-top: 2em;
+		margin: 1em 0;
 	}
 
 	h1 {

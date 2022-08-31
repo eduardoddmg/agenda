@@ -2,7 +2,7 @@ import { useState, useContext } from "react";
 import axios from "axios";
 import { API_URI } from "../../util";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { userContext } from "../../context";
 
 import { Layout } from "../../components";
@@ -53,6 +53,7 @@ export function Login() {
         <Button isLoading={isLoading} colorScheme="blue" type="submit">
           submit
         </Button>
+        <p>Não tem uma conta? <Link to="/register"><b>Se registre</b></Link></p>
       </S.Form>
     </Layout>
   );

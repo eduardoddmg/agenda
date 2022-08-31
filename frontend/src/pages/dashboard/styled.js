@@ -3,6 +3,7 @@ import { Container as ContainerGeral, Form as FormGeral } from '../../styles/ger
 
 
 export const Container = styled(ContainerGeral)`
+	padding: 1em 4%;
 	h1 {
 		font-size: 25px;
 		margin: 1em 0;
@@ -14,3 +15,14 @@ export const Container = styled(ContainerGeral)`
 `;
 
 export const Form = styled(FormGeral)``;
+
+export const Button = styled.button`
+	color: white;
+	font-weight: bold;
+
+	* {
+		font-weight: bold;
+		font-size: 20px;
+		color: ${props => props.color};
+	}
+`

@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { API_URI } from "../../util";
 import axios from "axios";
-
+import { BiPencil } from 'react-icons/bi';
+import { BsFillTrashFill } from 'react-icons/bs';
 import { Layout, Modal, Table } from "../../components";
 
 import * as S from "./styled.js";
@@ -108,7 +109,7 @@ export function Dashboard() {
         <h1> carregando... </h1>
       ) : (
         <S.Container>
-          <h1>Seja bem-vindo {username}</h1>
+          <h1>Seja bem-vindo, <b>{username}</b></h1>
           <Button onClick={createContact} colorScheme="blue" mb="2em">
             criar
           </Button>
@@ -121,20 +122,20 @@ export function Dashboard() {
                     <Td>{contact.phoneNumber}</Td>
                     <Td>{contact.email}</Td>
                     <Td>
-                      <Button
-                        colorScheme="orange"
+                      <S.Button
+                        color="orangered"
                         onClick={() => editContact(contact)}
                       >
-                        edit
-                      </Button>
+                        <BiPencil />
+                      </S.Button>
                     </Td>
                     <Td>
-                      <Button
-                        colorScheme="red"
+                      <S.Button
+                        color="red"
                         onClick={() => deleteContact(contact)}
                       >
-                        delete
-                      </Button>
+                        <BsFillTrashFill />
+                      </S.Button>
                     </Td>
                   </Tr>
                 );
