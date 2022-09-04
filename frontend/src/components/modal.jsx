@@ -13,7 +13,7 @@ export const Modal = ({ size, isOpen, onClose, children }) => {
         <ModalOverlay />
         <ModalContent>
           <ModalCloseButton />
-          <ModalBody>{children}</ModalBody>
+          <ModalBody p={0}>{children}</ModalBody>
         </ModalContent>
       </ModalChakra>
     </>

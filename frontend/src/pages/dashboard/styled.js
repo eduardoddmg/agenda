@@ -3,7 +3,10 @@ import { Container as ContainerGeral, Form as FormGeral } from '../../styles/ger
 
 
 export const Container = styled(ContainerGeral)`
-	padding: 1em 4%;
+	padding: 1em 8%;
+	* {
+		color: white;
+	}
 	h1 {
 		font-size: 25px;
 		margin: 1em 0;
@@ -11,6 +14,10 @@ export const Container = styled(ContainerGeral)`
 
 	button {
 		margin-bottom: 10em 0;
+	}
+
+	@media only screen and (max-width: 1000px) {
+		padding: 1em 2%;
 	}
 `;
 

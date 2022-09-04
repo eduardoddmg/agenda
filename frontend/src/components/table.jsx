@@ -7,10 +7,10 @@ import {
   Tbody,
 } from "@chakra-ui/react";
 
-export const Table = ({ header, children }) => {
+export const Table = ({ color, header, children }) => {
   return (
-    <TableContainer>
-      <TableChakra variant="simple">
+    <TableContainer bg={color} borderRadius={10}>
+      <TableChakra variant="unstyled">
         <Thead>
           <Tr>
             {header.map((item, index) => (

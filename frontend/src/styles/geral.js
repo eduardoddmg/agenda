@@ -3,11 +3,13 @@ import styled from 'styled-components';
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
-	margin: 5vh auto;
-
-	border: ${props => props.noBorder ? "none" : "1px solid black"};
+	margin: ${props => props.form && "5vh auto"};
+	background-color: #262020;
 	borderRadius: 8px;
 	width: ${props => props.w || "40%"};
+	* {
+		color: white;
+	}
 
 	padding: 2em 4em;
 
@@ -23,10 +25,20 @@ export const Form = styled.form`
 
 	input {
 		margin: 0.5em 0;
+		background-color: #252323;
+		border: none;
+	}
+
+	@media only screen and (max-width: 1000px) {
+		width: 90%;
+		padding: 1em 2em;
 	}
 
 `;
 
 export const Container = styled.section`
 	padding: 1em;
+	background-color: #252323;
+	min-height: 95vh;
+	color: white;
 `

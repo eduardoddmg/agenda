@@ -1,12 +1,16 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../context";
+import { BiMenu } from 'react-icons/bi';
+import { AiOutlineClose } from 'react-icons/ai';
 
 import { Button } from "@chakra-ui/react";
 
 import * as S from "./styled.js";
 
 export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
   const { token, dispatch } = useContext(userContext);
   const navigate = useNavigate();
 
@@ -15,19 +19,24 @@ export default function Navbar() {
     navigate("/");
   };
 
+  const changeStateNavbar = () => setIsOpen(!isOpen);
+
   return (
-    <S.Navbar>
+    <S.Navbar active={isOpen}>
       <section>
-        <Link to="/">Home</Link>
-        {token && <Link to="/dashboard">Dashboard</Link>}
+        <S.NavbarHome>
+          <Link to="/">Home</Link>
+          <button onClick={changeStateNavbar}>{!isOpen ? <BiMenu /> : <AiOutlineClose />}</button>
+        </S.NavbarHome>
       </section>
-      <section>
+      <S.NavbarOthersLinks active={isOpen}>
+        {token && <S.NavbarLink to="/dashboard">Dashboard</S.NavbarLink>}
         {token ? 
-          <Button colorScheme="whiteAlpha" onClick={logout}>
+          <Button colorScheme="blue" onClick={logout}>
             logout
           </Button> : <Button as={Link} colorScheme="blue" to="/login">Entrar</Button>
         }
-      </section>
+      </S.NavbarOthersLinks>
     </S.Navbar>
   );
 }
