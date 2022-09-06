@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import axios from "axios";
-import { API_URI } from "../../util";
+import { API_URI, loginAuthWithoutToken } from "../../util";
 import { useForm } from "react-hook-form";
 import { useNavigate, Link } from "react-router-dom";
 import { userContext } from "../../context";
@@ -20,32 +20,26 @@ export function Login() {
   const [isErrorForm, setIsErrorForm] = useState(false);
 
   const onSubmit = async (data) => {
-    setIsLoading(true);
-    const respUser = await axios.post(`${API_URI}/api/auth/login`, data);
-    if (respUser.name === "AxiosError") return setIsLoading(false);
-    console.log(respUser.name);
-    const respUserData = respUser.data;
-    const userData = respUserData.data;
-    const respType = respUserData.type;
-    
-    setIsLoading(false);
-    if (respType === "success") {
-      setIsErrorForm(false);
-      const respContacts = await axios.get(
-      `${API_URI}/api/contact/readContact?idUser=${userData._id}`
-      );
-      const respContactsData = respContacts.data;
-      const respContactsType = respContactsData.type;
-      const contacts = respContactsData.data;
-      dispatch({
-        type: "LOGIN_SUCCESS",
-        payload: { id: userData._id, username: userData.username, contacts },
-      });
-      navigate("/dashboard");
-    } else if (respType === "error") {
-      dispatch("LOGIN_FAILURE");
-      setIsErrorForm(true);
-  }
+    try {
+      setIsLoading(true);
+      const resp = await loginAuthWithoutToken(data);
+      console.log(resp);
+      setIsLoading(false);
+      if (resp.status === 200) {
+        setIsErrorForm(false);
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: { token: resp.data.token, username: resp.data.username },
+        });
+        navigate("/dashboard");
+      } else if (resp.status !== 200) {
+        dispatch("LOGIN_FAILURE");
+        setIsErrorForm(true);
+      }
+    } catch (err) {
+      console.log(err);
+      setIsLoading(false);
+    }
   };
 
   return (

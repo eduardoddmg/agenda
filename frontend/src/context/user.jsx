@@ -13,10 +13,10 @@ export const userContext = createContext(INITIAL_STATE);
 const userReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_SUCCESS":
-      localStorage.setItem("token", action.payload.id);
+      localStorage.setItem("token", action.payload.token);
       return {
         username: action.payload.username,
-        token: action.payload.id,
+        token: action.payload.token,
         contacts: action.payload.contacts,
       };
     case "LOGIN_FAILURE":
@@ -65,7 +65,9 @@ export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
 
   useEffect(() => {
-    login(state.token,dispatch)
+    if (!localStorage.getItem("token")) {
+      login(state.token,dispatch)
+    }
   }, []);
 
   const getContact = async (token, dispatch) => {

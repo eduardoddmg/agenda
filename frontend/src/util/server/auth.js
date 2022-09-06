@@ -18,3 +18,12 @@ export async function loginAuth(token) {
 		return error;
 	}
 };
+
+export async function loginAuthWithoutToken(data) {
+	try {
+		const resp = await axios.post(`${API_URI}/api/auth/login`, data);
+		return resp;
+	} catch (err) {
+		return error;
+	}
+}
