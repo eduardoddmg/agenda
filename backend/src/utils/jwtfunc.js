@@ -31,13 +31,13 @@ async function authUser(req, res, next) {
 
 function sendJWT(req, res) {
     try {
-        const token = jwt.sign({ id: req.userId }, process.env.SECRET, {
+        const token = jwt.sign({ user: req.user }, process.env.SECRET, {
             expiresIn: 10 * 60 * 60,
         });
 
         return res
             .status(200)
-            .json({ isLogged: true, token: token, id: req.userId });
+            .json({ type: "success", message: "usuario logado com sucesso", token: token, username: req.user.username });
     } catch (err) {
         return res.status(500).json({ message: "Unknown error" });
     }
@@ -51,8 +51,7 @@ async function verifyJWT(req, res, next) {
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
         if (err)
             return res.status(500).json({ message: "Failed to authenticate" });
-
-        req.userId = decoded.id;
+        req.user = decoded.user;
         next();
     });
 }

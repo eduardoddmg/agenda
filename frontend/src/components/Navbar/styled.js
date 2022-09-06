@@ -63,6 +63,7 @@ export const NavbarLink = styled(Link)`
 export const NavbarOthersLinks = styled.section`
 	@media only screen and (max-width: 1000px) {
 		margin: 20vh 0;
+		font-size: 25px;
 		display: ${props => props.active ? "flex" : "none"};
 		flex-direction: column;
 		align-items: center;
