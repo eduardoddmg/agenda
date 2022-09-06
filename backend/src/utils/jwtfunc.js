@@ -39,7 +39,7 @@ function sendJWT(req, res) {
             .status(200)
             .json({ type: "success", message: "usuario logado com sucesso", token: token, username: req.user.username });
     } catch (err) {
-        return res.status(500).json({ message: "Unknown error" });
+        return res.status(500).json({ message: err });
     }
 }
 

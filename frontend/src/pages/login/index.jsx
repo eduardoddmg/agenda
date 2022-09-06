@@ -22,7 +22,8 @@ export function Login() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     const respUser = await axios.post(`${API_URI}/api/auth/login`, data);
-    console.log(respUser);
+    if (respUser.name === "AxiosError") return setIsLoading(false);
+    console.log(respUser.name);
     const respUserData = respUser.data;
     const userData = respUserData.data;
     const respType = respUserData.type;
