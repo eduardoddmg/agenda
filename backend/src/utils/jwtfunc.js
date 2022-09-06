@@ -50,7 +50,7 @@ async function verifyJWT(req, res, next) {
 
     jwt.verify(token, process.env.SECRET, (err, decoded) => {
         if (err)
-            return res.status(500).json({ message: "Failed to authenticate" });
+            return res.status(500).json({ message: "Failed to authenticate", err });
         req.user = decoded.user;
         next();
     });

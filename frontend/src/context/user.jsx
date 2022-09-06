@@ -46,18 +46,21 @@ const userReducer = (state, action) => {
 };
 
 export const login = async (token, dispatch) => {
-    if (token) {
-      const login = await loginAuth(token);
-      console.log(login);
-      const contacts = await getContactsServer(login.data.data._id);
-      if (login.data.type === "success") {
-        dispatch({
-          type: "LOGIN_SUCCESS",
-          payload: { username: login.data.data.username, id: login.data.data._id, contacts: contacts.data.data },
-        });
-      } else if (login.data.type === "error") {
-        dispatch({ type: "LOGIN_FAILURE" });
+    try {
+      if (token) {
+        const loginUser = await loginAuth(token);
+        console.log(loginUser);
+        // if (login.data.type === "success") {
+        //   dispatch({
+        //     type: "LOGIN_SUCCESS",
+        //     payload: { username: login.data.data.username, id: login.data.data._id, contacts: contacts.data.data },
+        //   });
+        // } else if (login.data.type === "error") {
+        //   dispatch({ type: "LOGIN_FAILURE" });
+        // }
       }
+    } catch (err) {
+      console.log(err);
     }
 };
 
@@ -65,7 +68,7 @@ export const UserContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(userReducer, INITIAL_STATE);
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) {
+    if (localStorage.getItem("token")) {
       login(state.token,dispatch)
     }
   }, []);

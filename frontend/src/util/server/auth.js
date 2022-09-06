@@ -12,7 +12,7 @@ export async function registerAuth(data) {
 
 export async function loginAuth(token) {
 	try {
-	    const resp = await axios.post(`${API_URI}/api/auth/verifyId`);	    
+	    const resp = await axios.get(`${API_URI}/api/auth/verifyLogin`, {headers: { 'x-access-token': token}});	    
 	    return resp;
 	} catch (error) {
 		return error;
