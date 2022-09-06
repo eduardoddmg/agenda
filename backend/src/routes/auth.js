@@ -60,6 +60,6 @@ router.post("/login", async (req, res, next) => {
     }
 }, sendJWT);
 
-router.post("/verifyLogin", verifyJWT, sendJWT);
+router.get("/verifyLogin", verifyJWT, sendJWT);
 
 module.exports = router;
