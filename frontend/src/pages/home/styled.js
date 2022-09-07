@@ -2,8 +2,9 @@ import styled from 'styled-components';
 
 export const Container = styled.section`
 	padding: 1em 8%;
-	width: 100%;
+	max-width: 1600px;
 	display: flex;
+	margin: 0 auto;
 
 	section {
 		padding: 1em 0;
@@ -48,4 +49,8 @@ export const Container = styled.section`
 			width: 100%;
 		}
 	}
+`;
+
+export const ContainerWidth = styled.section`
+	width: 100%;
 `

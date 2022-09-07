@@ -22,21 +22,23 @@ export default function Navbar() {
   const changeStateNavbar = () => setIsOpen(!isOpen);
 
   return (
-    <S.Navbar active={isOpen}>
-      <section>
-        <S.NavbarHome>
-          <Link to="/">Home</Link>
-          <button onClick={changeStateNavbar}>{!isOpen ? <BiMenu /> : <AiOutlineClose />}</button>
-        </S.NavbarHome>
-      </section>
-      <S.NavbarOthersLinks active={isOpen}>
-        {token && <S.NavbarLink to="/dashboard">Dashboard</S.NavbarLink>}
-        {token ? 
-          <Button colorScheme="blue" onClick={logout}>
-            logout
-          </Button> : <Button as={Link} colorScheme="blue" to="/login">Entrar</Button>
-        }
-      </S.NavbarOthersLinks>
-    </S.Navbar>
+    <S.ContainerWidth>
+      <S.Navbar active={isOpen}>
+        <section>
+          <S.NavbarHome>
+            <Link to="/">Home</Link>
+            <button onClick={changeStateNavbar}>{!isOpen ? <BiMenu /> : <AiOutlineClose />}</button>
+          </S.NavbarHome>
+        </section>
+        <S.NavbarOthersLinks active={isOpen}>
+          {token && <S.NavbarLink to="/dashboard">Dashboard</S.NavbarLink>}
+          {token ? 
+            <Button colorScheme="blue" onClick={logout}>
+              logout
+            </Button> : <Button as={Link} colorScheme="blue" to="/login">Entrar</Button>
+          }
+        </S.NavbarOthersLinks>
+      </S.Navbar>
+    </S.ContainerWidth>
   );
 }

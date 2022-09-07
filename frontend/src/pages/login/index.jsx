@@ -8,6 +8,7 @@ import { userContext } from "../../context";
 import { Layout } from "../../components";
 
 import * as S from "../../styles/geral.js";
+import { ContainerWidth } from './styled.js';
 
 import { Button, Input, FormControl, FormHelperText } from "@chakra-ui/react";
 
@@ -44,6 +45,7 @@ export function Login() {
 
   return (
     <Layout>
+    <ContainerWidth>
       <S.Form onSubmit={handleSubmit(onSubmit)} form="true">
         <h1>Login</h1>
         <FormControl isInvalid={errors.username}>
@@ -81,6 +83,7 @@ export function Login() {
         </Button>
         <p>Não tem uma conta? <Link to="/register"><b>Se registre</b></Link></p>
       </S.Form>
+    </ContainerWidth>
     </Layout>
   );
 }

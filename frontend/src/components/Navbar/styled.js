@@ -6,10 +6,10 @@ const color = "#262020";
 export const Navbar = styled.nav`
 	padding: 1em 8%;
 	display: flex;
-	width: 100%;
+	max-width: 1600px;
+	margin: 0 auto;
 	justify-content: ${props => !props.active && "space-between"};
 	align-items: center;
-	background-color: ${color};
 
 	a:first-child {
 		margin-right: 1em;
@@ -70,3 +70,8 @@ export const NavbarOthersLinks = styled.section`
 		gap: 30px;
 	}
 `;
+
+export const ContainerWidth = styled.section`
+	width: 100%;
+	background-color: ${color};
+`

@@ -32,7 +32,7 @@ const FormModal = ({ isOpen, onClose, typeForm, defaultForm }) => {
   };
   return (
     <Modal isOpen={isOpen} onClose={onClose} size="xl">
-      <S.Form noBorder w="100%" onSubmit={handleSubmit(onSubmit)}>
+      <S.Form noBorder w="100%" formModal={true} onSubmit={handleSubmit(onSubmit)}>
         <h1>Adicionar contato</h1>
         <FormControl isInvalid={errors.name}>
           <Input
@@ -144,48 +144,48 @@ export function Dashboard() {
           />
         </S.ContainerSpinner>
       ) : (
-        <S.Container>
-          <h1>Seja bem-vindo, <b>{username}</b></h1>
-          <Button onClick={createContact} colorScheme="blue" mb="2em">
-            criar
-          </Button>
-          {contacts && contacts.length > 0 ? <Table color="#262020" header={["nome", "telefone", "email"]}>
-            {contacts &&
-              contacts.map((contact, index) => {
-                return (
-                  <Tr key={index}>
-                    <Td>{contact.name}</Td>
-                    <Td>{contact.phoneNumber}</Td>
-                    <Td>{contact.email}</Td>
-                    <Td>
-                      <S.Button
-                        color="orange"
-                        onClick={() => editContact(contact)}
-                      >
-                        <BiPencil />
-                      </S.Button>
-                    </Td>
-                    <Td>
-                      <S.Button
-                        color="red"
-                        onClick={() => deleteContact(contact)}
-                      >
-                        <BsFillTrashFill />
-                      </S.Button>
-                    </Td>
-                  </Tr>
-                );
-              })}
-          </Table> : <h1>Ainda não há nenhum <b>contato cadastrado</b></h1>}
-          {open && (
-            <FormModal
-              isOpen={isOpen}
-              onClose={onClose}
-              typeForm={typeForm}
-              defaultForm={defaultForm}
-            />
-          )}
-        </S.Container>
+          <S.ContainerWidth>
+            <h1>Seja bem-vindo, <b>{username}</b></h1>
+            <Button onClick={createContact} colorScheme="blue" mb="2em">
+              criar
+            </Button>
+            {contacts && contacts.length > 0 ? <Table color="#262020" header={["nome", "telefone", "email"]}>
+              {contacts &&
+                contacts.map((contact, index) => {
+                  return (
+                    <Tr key={index}>
+                      <Td>{contact.name}</Td>
+                      <Td>{contact.phoneNumber}</Td>
+                      <Td>{contact.email}</Td>
+                      <Td>
+                        <S.Button
+                          color="orange"
+                          onClick={() => editContact(contact)}
+                        >
+                          <BiPencil />
+                        </S.Button>
+                      </Td>
+                      <Td>
+                        <S.Button
+                          color="red"
+                          onClick={() => deleteContact(contact)}
+                        >
+                          <BsFillTrashFill />
+                        </S.Button>
+                      </Td>
+                    </Tr>
+                  );
+                })}
+            </Table> : <h1>Ainda não há nenhum <b>contato cadastrado</b></h1>}
+            {open && (
+              <FormModal
+                isOpen={isOpen}
+                onClose={onClose}
+                typeForm={typeForm}
+                defaultForm={defaultForm}
+              />
+            )}
+          </S.ContainerWidth>
       )}
     </Layout>
   );
