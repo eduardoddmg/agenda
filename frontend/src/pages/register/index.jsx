@@ -19,6 +19,7 @@ export function Register() {
   const onSubmit = async (data) => {
     setIsLoading(true);
     const register = await registerAuth(data);
+    console.log(register);
     if (register.data.type === "success") {
       navigate('/login');
     }
