@@ -32,4 +32,8 @@ export const Button = styled.button`
 		font-size: 20px;
 		color: ${props => props.color};
 	}
+`;
+
+export const ContainerSpinner = styled.section`
+	margin: 10vh auto;
 `

@@ -49,15 +49,14 @@ export const login = async (token, dispatch) => {
     try {
       if (token) {
         const loginUser = await loginAuth(token);
-        console.log(loginUser);
-        // if (login.data.type === "success") {
-        //   dispatch({
-        //     type: "LOGIN_SUCCESS",
-        //     payload: { username: login.data.data.username, id: login.data.data._id, contacts: contacts.data.data },
-        //   });
-        // } else if (login.data.type === "error") {
-        //   dispatch({ type: "LOGIN_FAILURE" });
-        // }
+        const contactsUser = await getContactsServer(token);
+        const contacts = contactsUser.data.contacts;
+        if (loginUser.status === 500) {
+          dispatch({ type: "LOGIN_FAILURE" });          
+        }
+        else if (loginUser.status === 200) {
+          dispatch({ type: "LOGIN_SUCCESS", payload: {username: loginUser.data.username, token, contacts }});
+        }
       }
     } catch (err) {
       console.log(err);
@@ -75,7 +74,7 @@ export const UserContextProvider = ({ children }) => {
 
   const getContact = async (token, dispatch) => {
     const resp = await getContactsServer(token);
-    const contacts = resp.data.data;
+    const contacts = resp.data.contacts;
     dispatch({ type: "GET_CONTACT", payload: { contacts, token } });
   };
 

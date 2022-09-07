@@ -22,9 +22,9 @@ const FormModal = ({ isOpen, onClose, typeForm, defaultForm }) => {
     data.idUser = token;
     data._id = defaultForm._id;
     if (typeForm) {
-      const contact = await updateContact(data);
+      const contact = await updateContact(data, token);
     } else {
-      const contact = await createContact(data);
+      const contact = await createContact(data, token);
     }
     getContact(token, dispatch);
     onClose();
@@ -123,24 +123,26 @@ export function Dashboard() {
     onOpen();
     setTypeForm(1);
     setDefaultForm(data);
+    console.log(data);
   };
 
   const deleteContact = async (data) => {
-    const contact = await deleteContactServer(data);
+    const contact = await deleteContactServer(data, token);
     getContact(token, dispatch);
   };
 
   return (
     <Layout>
       {loadingState ? (
-       <Spinner
-          thickness='4px'
-          speed='0.65s'
-          emptyColor='gray.200'
-          color='blue.500'
-          size='xl'
-          m="auto"
-        />
+        <S.ContainerSpinner>
+         <Spinner
+            thickness='4px'
+            speed='0.65s'
+            emptyColor='gray.200'
+            color='blue.500'
+            size='xl'
+          />
+        </S.ContainerSpinner>
       ) : (
         <S.Container>
           <h1>Seja bem-vindo, <b>{username}</b></h1>
