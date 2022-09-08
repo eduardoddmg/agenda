@@ -1,8 +1,8 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userContext } from "../../context";
-import { BiMenu } from 'react-icons/bi';
-import { AiOutlineClose } from 'react-icons/ai';
+import { BiMenu } from "react-icons/bi";
+import { AiOutlineClose } from "react-icons/ai";
 
 import { Button } from "@chakra-ui/react";
 
@@ -27,16 +27,22 @@ export default function Navbar() {
         <section>
           <S.NavbarHome>
             <Link to="/">Home</Link>
-            <button onClick={changeStateNavbar}>{!isOpen ? <BiMenu /> : <AiOutlineClose />}</button>
+            <button onClick={changeStateNavbar}>
+              {!isOpen ? <BiMenu /> : <AiOutlineClose />}
+            </button>
           </S.NavbarHome>
         </section>
         <S.NavbarOthersLinks active={isOpen}>
           {token && <S.NavbarLink to="/dashboard">Dashboard</S.NavbarLink>}
-          {token ? 
+          {token ? (
             <Button colorScheme="blue" onClick={logout}>
               logout
-            </Button> : <Button as={Link} colorScheme="blue" to="/login">Entrar</Button>
-          }
+            </Button>
+          ) : (
+            <Button as={Link} colorScheme="blue" to="/login">
+              Entrar
+            </Button>
+          )}
         </S.NavbarOthersLinks>
       </S.Navbar>
     </S.ContainerWidth>

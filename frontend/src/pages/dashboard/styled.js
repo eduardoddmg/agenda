@@ -24,7 +24,7 @@ export const Container = styled(ContainerGeral)`
 export const Form = styled(FormGeral)``;
 
 export const Button = styled.button`
-	color: white;
+	color: ${props => props.color};
 	font-weight: bold;
 
 	* {
@@ -42,9 +42,7 @@ export const ContainerWidth = styled.section`
 	max-width: 1600px;
 	margin: 0 auto;
 	padding: 1em 8%;
-	* {
-		color: white;
-	}
+	
 	h1 {
 		font-size: 25px;
 		margin: 1em 0;

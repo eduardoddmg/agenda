@@ -1,7 +1,7 @@
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import * as S from '../styles/geral.js';
-import styled from 'styled-components';
+import * as S from "../styles/geral.js";
+import styled from "styled-components";
 
 const Container = styled.section`
   padding: 1em;
@@ -15,9 +15,7 @@ export function Layout({ children }) {
   return (
     <>
       <Navbar />
-      <Container>
-        {children}
-      </Container>
+      <Container>{children}</Container>
       <Footer />
     </>
   );

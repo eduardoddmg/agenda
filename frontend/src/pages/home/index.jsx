@@ -1,8 +1,8 @@
 import { Layout } from "../../components";
-import * as S from './styled.js';
-import { useNavigate } from 'react-router-dom';
+import * as S from "./styled.js";
+import { useNavigate } from "react-router-dom";
 
-import { Button } from '@chakra-ui/react';
+import { Button } from "@chakra-ui/react";
 
 export function Home() {
   const navigate = useNavigate();
@@ -13,8 +13,13 @@ export function Home() {
         <S.Container reverse>
           <section>
             <h1>A Agenda</h1>
-            <p>Melhore a organizações do seus contatos com a nossa agenda inovadora</p>
-            <Button colorScheme="blue" onClick={() => navigate('/login')}>Entrar</Button>
+            <p>
+              Melhore a organizações do seus contatos com a nossa agenda
+              inovadora
+            </p>
+            <Button colorScheme="blue" onClick={() => navigate("/login")}>
+              Entrar
+            </Button>
           </section>
           <section>
             <img src="/assets/img1.svg" />
@@ -28,7 +33,10 @@ export function Home() {
           </section>
           <section>
             <h1>Empresa</h1>
-            <p>Nós trabalhamos com afinco para entregar o melhor resultado para você! Acesse a plataforma e aproveite!</p>
+            <p>
+              Nós trabalhamos com afinco para entregar o melhor resultado para
+              você! Acesse a plataforma e aproveite!
+            </p>
           </section>
         </S.Container>
       </S.ContainerWidth>
@@ -36,7 +44,10 @@ export function Home() {
         <S.Container reverse>
           <section>
             <h1>Segurança</h1>
-            <p>Todos os seus dados são armazenados com criptografia de ponta! Pode confiar e certeza que os seus dados estão bem seguros</p>
+            <p>
+              Todos os seus dados são armazenados com criptografia de ponta!
+              Pode confiar e certeza que os seus dados estão bem seguros
+            </p>
           </section>
           <section>
             <img src="/assets/img3.svg" />

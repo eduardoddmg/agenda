@@ -38,7 +38,7 @@ const userReducer = (state, action) => {
       return {
         contacts: action.payload.contacts,
         token: action.payload.token,
-        username: state.username
+        username: state.username,
       };
     default:
       return state;
@@ -46,21 +46,23 @@ const userReducer = (state, action) => {
 };
 
 export const login = async (token, dispatch) => {
-    try {
-      if (token) {
-        const loginUser = await loginAuth(token);
-        const contactsUser = await getContactsServer(token);
-        const contacts = contactsUser.data.contacts;
-        if (loginUser.status === 500) {
-          dispatch({ type: "LOGIN_FAILURE" });          
-        }
-        else if (loginUser.status === 200) {
-          dispatch({ type: "LOGIN_SUCCESS", payload: {username: loginUser.data.username, token, contacts }});
-        }
+  try {
+    if (token) {
+      const loginUser = await loginAuth(token);
+      const contactsUser = await getContactsServer(token);
+      const contacts = contactsUser.data.contacts;
+      if (loginUser.status === 500) {
+        dispatch({ type: "LOGIN_FAILURE" });
+      } else if (loginUser.status === 200) {
+        dispatch({
+          type: "LOGIN_SUCCESS",
+          payload: { username: loginUser.data.username, token, contacts },
+        });
       }
-    } catch (err) {
-      console.log(err);
     }
+  } catch (err) {
+    console.log(err);
+  }
 };
 
 export const UserContextProvider = ({ children }) => {
@@ -68,7 +70,7 @@ export const UserContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      login(state.token,dispatch)
+      login(state.token, dispatch);
     }
   }, []);
 
