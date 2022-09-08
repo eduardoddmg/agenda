@@ -27,7 +27,7 @@ export const Navbar = styled.nav`
 		section {
 			width: 100%;
 		}
-
+		background-color: ${color};
 		height: ${props => props.active && "100vh"};
 		position: ${props => props.active && "fixed"};
 		z-index: ${props => props.active && "9999"};

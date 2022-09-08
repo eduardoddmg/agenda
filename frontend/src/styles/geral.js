@@ -30,7 +30,7 @@ export const Form = styled.form`
 	}
 
 	@media only screen and (max-width: 1000px) {
-		width: ${props => props.formModal ? "100%" : "90%"};
+		width: 100%;
 		padding: 1em 2em;
 	}
 
