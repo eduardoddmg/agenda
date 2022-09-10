@@ -61,7 +61,8 @@ export const login = async (token, dispatch) => {
       }
     }
   } catch (err) {
-    dispatch({ type: "LOGIN_FAILURE" })
+    dispatch({ type: "LOGIN_FAILURE" });
+    if (window.location.pathname == "/dashboard") window.location.path = "/";
   }
 };
 
