@@ -61,7 +61,7 @@ export const login = async (token, dispatch) => {
       }
     }
   } catch (err) {
-    console.log(err);
+    dispatch({ type: "LOGIN_FAILURE" })
   }
 };
 
